@@ -6,6 +6,7 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    return this;
 };
 
 // Update the enemy's position, required method for game
@@ -25,10 +26,22 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
+var Player = function(){
+    this.sprite = 'images/char-boy.png';
+    this.update = function(){};
+    this.render = function(){};
+    this.handleInput = function(){};
+
+
+    return this;
+}
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+var allEnemies = [];
+var player = Player();
 
 
 
