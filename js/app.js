@@ -1,18 +1,17 @@
 // Enemies our player must avoid
-// var Enemy = function() {
-var Enemy = function(xCoordinates, yCoordinates, name) {
+var Enemy = function(name, xCoordinates, yCoordinates, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
-    // this.sprite = 'images/enemy-bug.png';
     var obj = Object.create(Enemy.prototype);
 
     objProperties = {
         x: xCoordinates,
         y: yCoordinates,
         sprite: 'images/enemy-bug.png',
+        speed: speed
     };
 
     for (property in objProperties){
@@ -35,8 +34,12 @@ Enemy.prototype = {
     render: function() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     },
-    update: function(){
-
+    update: function(dt){ // dt is a time delta between ticks that ensures that the game runs at the same speed for all computers
+        if (this.x <= ctx.canvas.width){
+            this.x = (this.x + 1 * dt) + this.speed;
+        } else {
+            this.x = 1;
+        }
     }
 
 };
@@ -61,12 +64,13 @@ var Player = function(){
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var enemy1 = Enemy(1,1, 'enemy1');
-var enemy2 = Enemy(50, 60, 'enemy2');
+var enemy1 = Enemy('enemy1', 1, 1, 1);
+var enemy2 = Enemy('enemy2',50, 60, 2);
+// var allEnemies = [enemy1];
 var allEnemies = [enemy1, enemy2];
 // allEnemies.push(enemy1);
-console.log(enemy1);
-console.log(enemy1 instanceof Enemy);
+// console.log(enemy1);
+// console.log(enemy1 instanceof Enemy);
 // console.log(allEnemies);
 
 var player = Player();
