@@ -7,17 +7,18 @@ var Enemy = function(xCoordinates, yCoordinates, name) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     // this.sprite = 'images/enemy-bug.png';
-    var obj = {
+    var obj = Object.create(Enemy.prototype);
+
+    objProperties = {
         x: xCoordinates,
         y: yCoordinates,
         sprite: 'images/enemy-bug.png',
-        render: function() {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-        // ctx.drawImage(Resources.get(this.sprite), 3, 300);
-        // console.log(`${name} rendered`);
-        },
-        update: function(){}
+    };
+
+    for (property in objProperties){
+        obj[property] = objProperties[property];
     }
+
     return obj;
 };
 
@@ -30,10 +31,15 @@ var Enemy = function(xCoordinates, yCoordinates, name) {
 // };
 
 // Draw the enemy on the screen, required method for game
-// Enemy.prototype.render = function() {
-//     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-//     console.log('enemy rendered');
-// };
+Enemy.prototype = {
+    render: function() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    },
+    update: function(){
+
+    }
+
+};
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -59,7 +65,8 @@ var enemy1 = Enemy(1,1, 'enemy1');
 var enemy2 = Enemy(50, 60, 'enemy2');
 var allEnemies = [enemy1, enemy2];
 // allEnemies.push(enemy1);
-// console.log(enemy1);
+console.log(enemy1);
+console.log(enemy1 instanceof Enemy);
 // console.log(allEnemies);
 
 var player = Player();
