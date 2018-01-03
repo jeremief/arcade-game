@@ -50,14 +50,18 @@ Enemy.prototype = {
 
 var Player = function(){
 
-    this.sprite = 'images/char-boy.png';
-    this.update = function(){};
-    this.render = function(){
-    };
-    this.handleInput = function(){};
-
-
-    return this;
+    var hero = {
+        x:202,
+        y:420,
+        sprite:'images/char-boy.png',
+        update: function(){},
+        render:function(){
+            ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+        },
+        handleInput: function(){}
+        
+    }
+    return hero;
 }
 
 
