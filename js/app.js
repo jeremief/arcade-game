@@ -52,10 +52,9 @@ var Player = function(){
 
     var hero = {
         x:202,
-        y:420,
-        speed: 1,
+        y:380,
         sprite:'images/char-boy.png',
-        update: function(dt){ // dt is a time delta between ticks that ensures that the game runs at the same speed for all computers
+        update: function(){ // dt is a time delta between ticks that ensures that the game runs at the same speed for all computers
         // update: function(dt,key){ // dt is a time delta between ticks that ensures that the game runs at the same speed for all computers
             // console.log(key);
                 // if (this.x <= ctx.canvas.width){
@@ -67,7 +66,6 @@ var Player = function(){
         render:function(){
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         },
-        // handleInput: function(key, dt){
         handleInput: function(key){
             // console.log(key);
             // if (key == 'up' && this.y <= ctx.canvas.height && this.y >= 0){
@@ -85,18 +83,17 @@ var Player = function(){
             // player.update(key);
 
             if (key == 'up'){
-                this.y--;
+                this.y = this.y - 80;
             }
             if (key == 'down'){
-                this.y++;
+                this.y = this.y + 80;
             }
             if (key == 'left'){
-                this.x--;
+                this.x = this.x - 100;
             }
             if (key == 'right'){
-                this.x++;
+                this.x = this.x + 100;
             }
-            // player.update(key);
             console.log([this.x, this,y]); 
         }
         
