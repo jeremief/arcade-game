@@ -53,12 +53,52 @@ var Player = function(){
     var hero = {
         x:202,
         y:420,
+        speed: 1,
         sprite:'images/char-boy.png',
-        update: function(){},
+        update: function(dt){ // dt is a time delta between ticks that ensures that the game runs at the same speed for all computers
+        // update: function(dt,key){ // dt is a time delta between ticks that ensures that the game runs at the same speed for all computers
+            // console.log(key);
+                // if (this.x <= ctx.canvas.width){
+                //     this.x = (this.x + 1 * dt) + this.speed;
+                // } else {
+                //     this.x = 1;
+                // }
+            },
         render:function(){
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         },
-        handleInput: function(){}
+        // handleInput: function(key, dt){
+        handleInput: function(key){
+            // console.log(key);
+            // if (key == 'up' && this.y <= ctx.canvas.height && this.y >= 0){
+            //     this.y = (this.y - 1 * dt) + this.speed;
+            // }
+            // if (key == 'down' && this.y <= ctx.canvas.height && this.y >= 0){
+            //     this.y = (this.y + 1 * dt) + this.speed;
+            // }
+            // if (key == 'left' && this.x <= ctx.canvas.width && this.x >= 0){
+            //     this.x = (this.x - 1 * dt) + this.speed;
+            // }
+            // if (key == 'right' && this.x <= ctx.canvas.width && this.x >= 0){
+            //     this.x = (this.x + 1 * dt) + this.speed;
+            // }
+            // player.update(key);
+
+            if (key == 'up'){
+                this.y--;
+            }
+            if (key == 'down'){
+                this.y++;
+            }
+            if (key == 'left'){
+                this.x--;
+            }
+            if (key == 'right'){
+                this.x++;
+            }
+            // player.update(key);
+            console.log([this.x, this,y]); 
+        }
         
     }
     return hero;
@@ -69,7 +109,7 @@ var Player = function(){
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 var enemy1 = Enemy('enemy1', 1, 1, 1);
-var enemy2 = Enemy('enemy2',50, 60, 2);
+var enemy2 = Enemy('enemy2', 50, 60, 2);
 // var allEnemies = [enemy1];
 var allEnemies = [enemy1, enemy2];
 // allEnemies.push(enemy1);
