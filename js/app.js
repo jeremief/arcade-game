@@ -37,6 +37,8 @@ Enemy.prototype = {
     update: function(dt){ // dt is a time delta between ticks that ensures that the game runs at the same speed for all computers
         if (this.x <= ctx.canvas.width){
             this.x = (this.x + 1 * dt) + this.speed;
+            // this.x = (this.x + 1) * this.speed * dt;
+            // console.log(dt);
         } else {
             this.x = 1;
         }
@@ -53,7 +55,7 @@ var Player = function(){
     var hero = {
         x:202,
         y:420,
-        speed: 1,
+        speed: 5,
         sprite:'images/char-boy.png',
         update: function(dt){ // dt is a time delta between ticks that ensures that the game runs at the same speed for all computers
         // update: function(dt,key){ // dt is a time delta between ticks that ensures that the game runs at the same speed for all computers
@@ -68,36 +70,39 @@ var Player = function(){
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         },
         // handleInput: function(key, dt){
-        handleInput: function(key){
+        handleInput: function(key, dt=1){
             // console.log(key);
-            // if (key == 'up' && this.y <= ctx.canvas.height && this.y >= 0){
-            //     this.y = (this.y - 1 * dt) + this.speed;
-            // }
-            // if (key == 'down' && this.y <= ctx.canvas.height && this.y >= 0){
-            //     this.y = (this.y + 1 * dt) + this.speed;
-            // }
-            // if (key == 'left' && this.x <= ctx.canvas.width && this.x >= 0){
-            //     this.x = (this.x - 1 * dt) + this.speed;
-            // }
-            // if (key == 'right' && this.x <= ctx.canvas.width && this.x >= 0){
-            //     this.x = (this.x + 1 * dt) + this.speed;
-            // }
+            if (key == 'up' && this.y <= ctx.canvas.height && this.y >= 0){
+                // this.y = ((this.y - 1) * dt) + this.speed;
+                this.y = ((this.y - 1) * dt) - this.speed;
+            }
+            if (key == 'down' && this.y <= ctx.canvas.height && this.y >= 0){
+                this.y = ((this.y + 1) * dt) + this.speed;
+            }
+            if (key == 'left' && this.x <= ctx.canvas.width && this.x >= 0){
+                // this.x = ((this.x - 1) * dt) + this.speed;
+                this.x = ((this.x - 1) * dt) - this.speed;
+            }
+            if (key == 'right' && this.x <= ctx.canvas.width && this.x >= 0){
+                this.x = ((this.x + 1) * dt) + this.speed;
+            }
             // player.update(key);
 
-            if (key == 'up'){
-                this.y--;
-            }
-            if (key == 'down'){
-                this.y++;
-            }
-            if (key == 'left'){
-                this.x--;
-            }
-            if (key == 'right'){
-                this.x++;
-            }
+            // if (key == 'up'){
+            //     this.y--;
+            // }
+            // if (key == 'down'){
+            //     this.y++;
+            // }
+            // if (key == 'left'){
+            //     this.x--;
+            // }
+            // if (key == 'right'){
+            //     this.x++;
+            // }
             // player.update(key);
-            console.log([this.x, this,y]); 
+            console.log(dt);
+            console.log([this.x, this.y]); 
         }
         
     }
@@ -123,7 +128,7 @@ var player = Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keydown', function(e) {
     var allowedKeys = {
         37: 'left',
         38: 'up',
