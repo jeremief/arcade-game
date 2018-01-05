@@ -82,19 +82,19 @@ var Player = function(){
             // }
             // player.update(key);
 
-            if (key == 'up'){
+            if (key == 'up' && this.y - 80 >= -20){
                 this.y = this.y - 80;
             }
-            if (key == 'down'){
+            if (key == 'down' && this.y + 80 <= 380){
                 this.y = this.y + 80;
             }
-            if (key == 'left'){
+            if (key == 'left' && this.x - 100 >= 0){
                 this.x = this.x - 100;
             }
-            if (key == 'right'){
+            if (key == 'right' && this.x + 100 <= 500) {
                 this.x = this.x + 100;
             }
-            console.log([this.x, this,y]); 
+            console.log([this.x, this.y]); 
         }
         
     }
