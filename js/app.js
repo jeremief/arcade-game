@@ -53,48 +53,34 @@ var Player = function(){
     var hero = {
         x:202,
         y:380,
+        xPotential: 202,
+        yPotential: 380,
         sprite:'images/char-boy.png',
-        update: function(){ // dt is a time delta between ticks that ensures that the game runs at the same speed for all computers
-        // update: function(dt,key){ // dt is a time delta between ticks that ensures that the game runs at the same speed for all computers
-            // console.log(key);
-                // if (this.x <= ctx.canvas.width){
-                //     this.x = (this.x + 1 * dt) + this.speed;
-                // } else {
-                //     this.x = 1;
-                // }
+        update: function(){
+            this.x = this.xPotential;
+            this.y = this.yPotential;
             },
         render:function(){
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         },
         handleInput: function(key){
-            // console.log(key);
-            // if (key == 'up' && this.y <= ctx.canvas.height && this.y >= 0){
-            //     this.y = (this.y - 1 * dt) + this.speed;
-            // }
-            // if (key == 'down' && this.y <= ctx.canvas.height && this.y >= 0){
-            //     this.y = (this.y + 1 * dt) + this.speed;
-            // }
-            // if (key == 'left' && this.x <= ctx.canvas.width && this.x >= 0){
-            //     this.x = (this.x - 1 * dt) + this.speed;
-            // }
-            // if (key == 'right' && this.x <= ctx.canvas.width && this.x >= 0){
-            //     this.x = (this.x + 1 * dt) + this.speed;
-            // }
-            // player.update(key);
 
             if (key == 'up' && this.y - 80 >= -20){
-                this.y = this.y - 80;
+                this.yPotential = this.y - 80;
+                this.xPotential = this.x;
             }
             if (key == 'down' && this.y + 80 <= 380){
-                this.y = this.y + 80;
+                this.yPotential = this.y + 80;
+                this.xPotential = this.x;
             }
             if (key == 'left' && this.x - 100 >= 0){
-                this.x = this.x - 100;
+                this.xPotential = this.x - 100;
+                this.yPotential = this.y;
             }
             if (key == 'right' && this.x + 100 <= 500) {
-                this.x = this.x + 100;
+               this. xPotential = this.x + 100;
+               this. yPotential= this.y;
             }
-            console.log([this.x, this.y]); 
         }
         
     }
