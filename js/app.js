@@ -10,6 +10,8 @@ var Enemy = function(name, xCoordinates, yCoordinates, speed) {
     objProperties = {
         x: xCoordinates,
         y: yCoordinates,
+        width: 50,
+        height: 100,
         sprite: 'images/enemy-bug.png',
         speed: speed
     };
@@ -51,15 +53,40 @@ Enemy.prototype = {
 var Player = function(){
 
     var hero = {
-        x:202,
-        y:380,
+        startX: 202,
+        startY: 380,
+        // startY: 1,
+        x: this.startX,
+        y: this.startY,
+        width: 50,
+        height: 100,
+        collisionSensors: {
+            c1: {},
+            c2: {},
+            c3: {},
+            c4: {}
+        },
+        // xPotential: this.startX,
         xPotential: 202,
+        // yPotential: this.startY,
         yPotential: 380,
+        // yPotential: 1,
         sprite:'images/char-boy.png',
         update: function(){
             this.x = this.xPotential;
             this.y = this.yPotential;
+
+            this.collisionSensors.c1 = {x: (this.x - this.width /2), y: (this.y + this.height /2)}
+            this.collisionSensors.c2 = {x: (this.x + this.width /2), y: (this.y + this.height /2)}
+            this.collisionSensors.c3 = {x: (this.x + this.width /2), y: (this.y - this.height /2)}
+            this.collisionSensors.c4 = {x: (this.x - this.width /2), y: (this.y - this.height /2)}
+
+
             },
+        // checkCollisions: function(){
+
+
+        // },
         render:function(){
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         },
@@ -101,6 +128,7 @@ var allEnemies = [enemy1, enemy2];
 // console.log(allEnemies);
 
 var player = Player();
+console.log(player);
 
 
 
@@ -116,3 +144,31 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
+
+            /*
+             For all enemies, check that the collision box does not intesect with the player's.
+            Collision means that one of the player's corner is in the enemy's colision 
+            box (between x1 and x2 and between y1 and y2)
+            */
+function checkCollisions(){
+    for (var enemy of allEnemies){
+            if(player.collisionSensors.c1.x >= enemy.x && player.collisionSensors.c1.x <= enemy.x + enemy.width && player.collisionSensors.c1.y >= enemy.y && player.collisionSensors.c1.y <= enemy.y + enemy.height) {
+                console.log("COLLISION");
+            }
+            if(player.collisionSensors.c2.x >= enemy.x && player.collisionSensors.c2.x <= enemy.x + enemy.width && player.collisionSensors.c2.y >= enemy.y && player.collisionSensors.c2.y <= enemy.y + enemy.height) {
+                console.log("COLLISION");
+            }
+            if(player.collisionSensors.c3.x >= enemy.x && player.collisionSensors.c3.x <= enemy.x + enemy.width && player.collisionSensors.c3.y >= enemy.y && player.collisionSensors.c3.y <= enemy.y + enemy.height) {
+                console.log("COLLISION");
+            }
+            if(player.collisionSensors.c4.x >= enemy.x && player.collisionSensors.c4.x <= enemy.x + enemy.width && player.collisionSensors.c4.y >= enemy.y && player.collisionSensors.c4.y <= enemy.y + enemy.height) {
+                console.log("COLLISION");
+            }
+
+        }
+        // console.log(allEnemies);
+        // console.log(enemy);
+        // console.log(player);
+    // }
+}
