@@ -162,6 +162,7 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
+        console.log("reset called");
     }
 
     /* Go ahead and load all of the images we know we're going to need to

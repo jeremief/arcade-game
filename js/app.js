@@ -83,10 +83,6 @@ var Player = function(){
 
 
             },
-        // checkCollisions: function(){
-
-
-        // },
         render:function(){
             ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
         },
@@ -154,21 +150,21 @@ document.addEventListener('keyup', function(e) {
 function checkCollisions(){
     for (var enemy of allEnemies){
             if(player.collisionSensors.c1.x >= enemy.x && player.collisionSensors.c1.x <= enemy.x + enemy.width && player.collisionSensors.c1.y >= enemy.y && player.collisionSensors.c1.y <= enemy.y + enemy.height) {
-                console.log("COLLISION");
+                // console.log("COLLISION");
+                reset();
             }
             if(player.collisionSensors.c2.x >= enemy.x && player.collisionSensors.c2.x <= enemy.x + enemy.width && player.collisionSensors.c2.y >= enemy.y && player.collisionSensors.c2.y <= enemy.y + enemy.height) {
-                console.log("COLLISION");
+                // console.log("COLLISION");
+                reset();
             }
             if(player.collisionSensors.c3.x >= enemy.x && player.collisionSensors.c3.x <= enemy.x + enemy.width && player.collisionSensors.c3.y >= enemy.y && player.collisionSensors.c3.y <= enemy.y + enemy.height) {
-                console.log("COLLISION");
+                // console.log("COLLISION");
+                reset();
             }
             if(player.collisionSensors.c4.x >= enemy.x && player.collisionSensors.c4.x <= enemy.x + enemy.width && player.collisionSensors.c4.y >= enemy.y && player.collisionSensors.c4.y <= enemy.y + enemy.height) {
-                console.log("COLLISION");
+                // console.log("COLLISION");
+                reset();
             }
 
         }
-        // console.log(allEnemies);
-        // console.log(enemy);
-        // console.log(player);
-    // }
 }
