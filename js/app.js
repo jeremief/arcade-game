@@ -124,7 +124,7 @@ var allEnemies = [enemy1, enemy2];
 // console.log(allEnemies);
 
 var player = Player();
-console.log(player);
+// console.log(player);
 
 
 
@@ -167,4 +167,12 @@ function checkCollisions(){
             }
 
         }
+}
+
+function reset(){
+    enemy1 = Enemy('enemy1', 1, 1, 1);
+    enemy2 = Enemy('enemy2', 50, 60, 2);
+    allEnemies = [enemy1, enemy2];
+    player = Player();
+
 }
