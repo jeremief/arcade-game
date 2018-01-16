@@ -11,7 +11,8 @@ var Enemy = function(name, xCoordinates, yCoordinates, speed) {
         x: xCoordinates,
         y: yCoordinates,
         width: 50,
-        height: 100,
+        // height: 100,
+        height: 25,
         sprite: 'images/enemy-bug.png',
         speed: speed
     };
@@ -76,10 +77,16 @@ var Player = function(){
             this.x = this.xPotential;
             this.y = this.yPotential;
 
-            this.collisionSensors.c1 = {x: (this.x - this.width /2), y: (this.y + this.height /2)}
-            this.collisionSensors.c2 = {x: (this.x + this.width /2), y: (this.y + this.height /2)}
-            this.collisionSensors.c3 = {x: (this.x + this.width /2), y: (this.y - this.height /2)}
-            this.collisionSensors.c4 = {x: (this.x - this.width /2), y: (this.y - this.height /2)}
+            // this.collisionSensors.c1 = {x: (this.x - this.width /2), y: (this.y + this.height /2)}
+            // this.collisionSensors.c2 = {x: (this.x + this.width /2), y: (this.y + this.height /2)}
+            // this.collisionSensors.c3 = {x: (this.x + this.width /2), y: (this.y - this.height /2)}
+            // this.collisionSensors.c4 = {x: (this.x - this.width /2), y: (this.y - this.height /2)}
+
+            this.collisionSensors.c1 = {x: (this.x - this.width /2), y: (this.y + this.height /12)}
+            this.collisionSensors.c2 = {x: (this.x + this.width /2), y: (this.y + this.height /12)}
+            this.collisionSensors.c3 = {x: (this.x + this.width /2), y: (this.y - this.height /12)}
+            this.collisionSensors.c4 = {x: (this.x - this.width /2), y: (this.y - this.height /12)}
+            console.log(this.y + " "+ this.collisionSensors.c1.y + " " + this.collisionSensors.c2.y);  
 
 
             },
@@ -114,8 +121,8 @@ var Player = function(){
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var enemy1 = Enemy('enemy1', 1, 1, 1);
-var enemy2 = Enemy('enemy2', 50, 60, 2);
+var enemy1 = Enemy('enemy1', 50, 60, 1);
+var enemy2 = Enemy('enemy2', 50, 145, 2);
 // var allEnemies = [enemy1];
 var allEnemies = [enemy1, enemy2];
 // allEnemies.push(enemy1);
@@ -150,19 +157,20 @@ document.addEventListener('keyup', function(e) {
 function checkCollisions(){
     for (var enemy of allEnemies){
             if(player.collisionSensors.c1.x >= enemy.x && player.collisionSensors.c1.x <= enemy.x + enemy.width && player.collisionSensors.c1.y >= enemy.y && player.collisionSensors.c1.y <= enemy.y + enemy.height) {
-                // console.log("COLLISION");
+                console.log("COLLISION");
+                console.log(player.y + " "+ player.collisionSensors.c1.y + " " + player.collisionSensors.c2.y); 
                 reset();
             }
             if(player.collisionSensors.c2.x >= enemy.x && player.collisionSensors.c2.x <= enemy.x + enemy.width && player.collisionSensors.c2.y >= enemy.y && player.collisionSensors.c2.y <= enemy.y + enemy.height) {
-                // console.log("COLLISION");
+                console.log("COLLISION");
                 reset();
             }
             if(player.collisionSensors.c3.x >= enemy.x && player.collisionSensors.c3.x <= enemy.x + enemy.width && player.collisionSensors.c3.y >= enemy.y && player.collisionSensors.c3.y <= enemy.y + enemy.height) {
-                // console.log("COLLISION");
+                console.log("COLLISION");
                 reset();
             }
             if(player.collisionSensors.c4.x >= enemy.x && player.collisionSensors.c4.x <= enemy.x + enemy.width && player.collisionSensors.c4.y >= enemy.y && player.collisionSensors.c4.y <= enemy.y + enemy.height) {
-                // console.log("COLLISION");
+                console.log("COLLISION");
                 reset();
             }
 
@@ -170,8 +178,8 @@ function checkCollisions(){
 }
 
 function reset(){
-    enemy1 = Enemy('enemy1', 1, 1, 1);
-    enemy2 = Enemy('enemy2', 50, 60, 2);
+    enemy1 = Enemy('enemy1', 50, 60, 1);
+    enemy2 = Enemy('enemy2', 50, 145, 2);
     allEnemies = [enemy1, enemy2];
     player = Player();
 
