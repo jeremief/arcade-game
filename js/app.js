@@ -11,7 +11,6 @@ var Enemy = function(name, xCoordinates, yCoordinates, speed) {
         x: xCoordinates,
         y: yCoordinates,
         width: 50,
-        // height: 100,
         height: 25,
         sprite: 'images/enemy-bug.png',
         speed: speed
@@ -56,7 +55,6 @@ var Player = function(){
     var hero = {
         startX: 202,
         startY: 380,
-        // startY: 1,
         x: this.startX,
         y: this.startY,
         width: 50,
@@ -67,21 +65,12 @@ var Player = function(){
             c3: {},
             c4: {}
         },
-        // xPotential: this.startX,
         xPotential: 202,
-        // yPotential: this.startY,
         yPotential: 380,
-        // yPotential: 1,
         sprite:'images/char-boy.png',
         update: function(){
             this.x = this.xPotential;
             this.y = this.yPotential;
-
-            // this.collisionSensors.c1 = {x: (this.x - this.width /2), y: (this.y + this.height /2)}
-            // this.collisionSensors.c2 = {x: (this.x + this.width /2), y: (this.y + this.height /2)}
-            // this.collisionSensors.c3 = {x: (this.x + this.width /2), y: (this.y - this.height /2)}
-            // this.collisionSensors.c4 = {x: (this.x - this.width /2), y: (this.y - this.height /2)}
-
             this.collisionSensors.c1 = {x: (this.x - this.width /2), y: (this.y + this.height /12)}
             this.collisionSensors.c2 = {x: (this.x + this.width /2), y: (this.y + this.height /12)}
             this.collisionSensors.c3 = {x: (this.x + this.width /2), y: (this.y - this.height /12)}
@@ -123,15 +112,9 @@ var Player = function(){
 // Place the player object in a variable called player
 var enemy1 = Enemy('enemy1', 50, 60, 1);
 var enemy2 = Enemy('enemy2', 50, 145, 2);
-// var allEnemies = [enemy1];
-var allEnemies = [enemy1, enemy2];
-// allEnemies.push(enemy1);
-// console.log(enemy1);
-// console.log(enemy1 instanceof Enemy);
-// console.log(allEnemies);
-
+var enemy3 = Enemy('enemy3', 50, 225, 3);
+var allEnemies = [enemy1, enemy2, enemy3];
 var player = Player();
-// console.log(player);
 
 
 
@@ -151,7 +134,7 @@ document.addEventListener('keyup', function(e) {
 
             /*
              For all enemies, check that the collision box does not intesect with the player's.
-            Collision means that one of the player's corner is in the enemy's colision 
+            Collision means that one of the player's corner is in the enemy's collision 
             box (between x1 and x2 and between y1 and y2)
             */
 function checkCollisions(){
@@ -180,7 +163,8 @@ function checkCollisions(){
 function reset(){
     enemy1 = Enemy('enemy1', 50, 60, 1);
     enemy2 = Enemy('enemy2', 50, 145, 2);
-    allEnemies = [enemy1, enemy2];
+    enemy3 = Enemy('enemy2', 50, 225, 3);
+    allEnemies = [enemy1, enemy2, enemy3];
     player = Player();
 
 }
