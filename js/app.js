@@ -112,9 +112,21 @@ var Player = function(){
 // Place the player object in a variable called player
 
 function generateEnemies(){
-    var enemy1 = Enemy('enemy1', 0, 60, 1);
-    var enemy2 = Enemy('enemy2', 0, 145, 2);
-    var enemy3 = Enemy('enemy3', 0, 225, 3);
+    var enemyPossibleStartX = 0;
+    var enemyPossibleStartY = [60, 145, 225];
+    var enemyPossibleSpeed = [1, 2, 3, 4, 5];
+
+    function randomiseEnemyStartY(possibleStartY){
+         return possibleStartY[Math.floor(Math.random()*possibleStartY.length)];
+    }
+
+    function randomiseEnemySpeed(possibleSpeed){
+        return possibleSpeed[Math.floor(Math.random()*possibleSpeed.length)];
+    }
+
+    var enemy1 = Enemy('enemy1', enemyPossibleStartX, randomiseEnemyStartY(enemyPossibleStartY), randomiseEnemySpeed(enemyPossibleSpeed));
+    var enemy2 = Enemy('enemy2', enemyPossibleStartX, randomiseEnemyStartY(enemyPossibleStartY), randomiseEnemySpeed(enemyPossibleSpeed));
+    var enemy3 = Enemy('enemy3', enemyPossibleStartX, randomiseEnemyStartY(enemyPossibleStartY), randomiseEnemySpeed(enemyPossibleSpeed));
     var enemies = [enemy1, enemy2, enemy3];
     return enemies;
 }
