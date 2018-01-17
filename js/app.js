@@ -167,10 +167,7 @@ function checkCollisions(){
 }
 
 function reset(){
-    enemy1 = Enemy('enemy1', 50, 60, 1);
-    enemy2 = Enemy('enemy2', 50, 145, 2);
-    enemy3 = Enemy('enemy2', 50, 225, 3);
-    allEnemies = [enemy1, enemy2, enemy3];
+    allEnemies = generateEnemies();
     player = Player();
 
 }
