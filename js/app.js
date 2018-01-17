@@ -75,7 +75,7 @@ var Player = function(){
             this.collisionSensors.c2 = {x: (this.x + this.width /2), y: (this.y + this.height /8)}
             this.collisionSensors.c3 = {x: (this.x + this.width /2), y: (this.y - this.height /8)}
             this.collisionSensors.c4 = {x: (this.x - this.width /2), y: (this.y - this.height /8)}
-            // console.log(this.y + " "+ this.collisionSensors.c1.y + " " + this.collisionSensors.c2.y);  
+            // console.log(this.startY);  
 
 
             },
@@ -100,6 +100,10 @@ var Player = function(){
                this. xPotential = this.x + 100;
                this. yPotential= this.y;
             }
+        },
+        resetPosition() {
+            this.xPotential = this.startX;
+            this.yPotential = this.startY;
         }
         
     }
@@ -158,20 +162,15 @@ document.addEventListener('keyup', function(e) {
 function checkCollisions(){
     for (var enemy of allEnemies){
             if(player.collisionSensors.c1.x >= enemy.x && player.collisionSensors.c1.x <= enemy.x + enemy.width && player.collisionSensors.c1.y >= enemy.y && player.collisionSensors.c1.y <= enemy.y + enemy.height) {
-                console.log("COLLISION");
-                console.log(player.y + " "+ player.collisionSensors.c1.y + " " + player.collisionSensors.c2.y); 
                 reset();
             }
             if(player.collisionSensors.c2.x >= enemy.x && player.collisionSensors.c2.x <= enemy.x + enemy.width && player.collisionSensors.c2.y >= enemy.y && player.collisionSensors.c2.y <= enemy.y + enemy.height) {
-                console.log("COLLISION");
                 reset();
             }
             if(player.collisionSensors.c3.x >= enemy.x && player.collisionSensors.c3.x <= enemy.x + enemy.width && player.collisionSensors.c3.y >= enemy.y && player.collisionSensors.c3.y <= enemy.y + enemy.height) {
-                console.log("COLLISION");
                 reset();
             }
             if(player.collisionSensors.c4.x >= enemy.x && player.collisionSensors.c4.x <= enemy.x + enemy.width && player.collisionSensors.c4.y >= enemy.y && player.collisionSensors.c4.y <= enemy.y + enemy.height) {
-                console.log("COLLISION");
                 reset();
             }
 
@@ -180,6 +179,6 @@ function checkCollisions(){
 
 function reset(){
     allEnemies = generateEnemies();
-    player = Player();
+    player.resetPosition();
 
 }
