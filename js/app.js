@@ -10,7 +10,7 @@ var Enemy = function(name, xCoordinates, yCoordinates, speed) {
     objProperties = {
         x: xCoordinates,
         y: yCoordinates,
-        width: 50,
+        width: 45,
         height: 25,
         sprite: 'images/enemy-bug.png',
         speed: speed
@@ -71,11 +71,11 @@ var Player = function(){
         update: function(){
             this.x = this.xPotential;
             this.y = this.yPotential;
-            this.collisionSensors.c1 = {x: (this.x - this.width /2), y: (this.y + this.height /12)}
-            this.collisionSensors.c2 = {x: (this.x + this.width /2), y: (this.y + this.height /12)}
-            this.collisionSensors.c3 = {x: (this.x + this.width /2), y: (this.y - this.height /12)}
-            this.collisionSensors.c4 = {x: (this.x - this.width /2), y: (this.y - this.height /12)}
-            console.log(this.y + " "+ this.collisionSensors.c1.y + " " + this.collisionSensors.c2.y);  
+            this.collisionSensors.c1 = {x: (this.x - this.width /2), y: (this.y + this.height /8)}
+            this.collisionSensors.c2 = {x: (this.x + this.width /2), y: (this.y + this.height /8)}
+            this.collisionSensors.c3 = {x: (this.x + this.width /2), y: (this.y - this.height /8)}
+            this.collisionSensors.c4 = {x: (this.x - this.width /2), y: (this.y - this.height /8)}
+            // console.log(this.y + " "+ this.collisionSensors.c1.y + " " + this.collisionSensors.c2.y);  
 
 
             },
@@ -110,10 +110,16 @@ var Player = function(){
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var enemy1 = Enemy('enemy1', 50, 60, 1);
-var enemy2 = Enemy('enemy2', 50, 145, 2);
-var enemy3 = Enemy('enemy3', 50, 225, 3);
-var allEnemies = [enemy1, enemy2, enemy3];
+
+function generateEnemies(){
+    var enemy1 = Enemy('enemy1', 0, 60, 1);
+    var enemy2 = Enemy('enemy2', 0, 145, 2);
+    var enemy3 = Enemy('enemy3', 0, 225, 3);
+    var enemies = [enemy1, enemy2, enemy3];
+    return enemies;
+}
+
+var allEnemies = generateEnemies();
 var player = Player();
 
 
