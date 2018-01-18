@@ -1,7 +1,9 @@
 var gameParameters = {
     winningY: -20,
     possibleGameDifficulty: [1, 2, 3],
-    gameDSifficulty: 1
+    gameDifficulty: 1,
+    numberEnemies: 4,
+    startPause: 3000
 }
 
 
@@ -131,6 +133,7 @@ function generateEnemies(){
     var enemyPossibleStartX = 0;
     var enemyPossibleStartY = [60, 145, 225];
     var enemyPossibleSpeed = [1, 2, 3, 4, 5];
+    var enemies = [];
 
     function randomiseEnemyStartY(possibleStartY){
          return possibleStartY[Math.floor(Math.random()*possibleStartY.length)];
@@ -140,10 +143,15 @@ function generateEnemies(){
         return possibleSpeed[Math.floor(Math.random()*possibleSpeed.length)];
     }
 
-    var enemy1 = Enemy('enemy1', enemyPossibleStartX, randomiseEnemyStartY(enemyPossibleStartY), randomiseEnemySpeed(enemyPossibleSpeed));
-    var enemy2 = Enemy('enemy2', enemyPossibleStartX, randomiseEnemyStartY(enemyPossibleStartY), randomiseEnemySpeed(enemyPossibleSpeed));
-    var enemy3 = Enemy('enemy3', enemyPossibleStartX, randomiseEnemyStartY(enemyPossibleStartY), randomiseEnemySpeed(enemyPossibleSpeed));
-    var enemies = [enemy1, enemy2, enemy3];
+    for (var i = 1; i <= gameParameters.numberEnemies; i++){
+        var enemy = Enemy(('enemy'+ i), enemyPossibleStartX, randomiseEnemyStartY(enemyPossibleStartY), randomiseEnemySpeed(enemyPossibleSpeed));
+        enemies.push(enemy);
+    }
+
+    // var enemy1 = Enemy('enemy1', enemyPossibleStartX, randomiseEnemyStartY(enemyPossibleStartY), randomiseEnemySpeed(enemyPossibleSpeed));
+    // var enemy2 = Enemy('enemy2', enemyPossibleStartX, randomiseEnemyStartY(enemyPossibleStartY), randomiseEnemySpeed(enemyPossibleSpeed));
+    // var enemy3 = Enemy('enemy3', enemyPossibleStartX, randomiseEnemyStartY(enemyPossibleStartY), randomiseEnemySpeed(enemyPossibleSpeed));
+    // var enemies = [enemy1, enemy2, enemy3];
     return enemies;
 }
 
