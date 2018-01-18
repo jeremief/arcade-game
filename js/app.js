@@ -1,3 +1,10 @@
+var gameParameters = {
+    winningY: -20,
+    possibleGameDifficulty: [1, 2, 3],
+    gameDSifficulty: 1
+}
+
+
 // Enemies our player must avoid
 var Enemy = function(name, xCoordinates, yCoordinates, speed) {
     // Variables applied to each of our instances go here,
@@ -53,6 +60,7 @@ Enemy.prototype = {
 var Player = function(){
 
     var hero = {
+        livesLeft: 3,
         startX: 202,
         startY: 380,
         x: this.startX,
@@ -75,7 +83,11 @@ var Player = function(){
             this.collisionSensors.c2 = {x: (this.x + this.width /2), y: (this.y + this.height /8)}
             this.collisionSensors.c3 = {x: (this.x + this.width /2), y: (this.y - this.height /8)}
             this.collisionSensors.c4 = {x: (this.x - this.width /2), y: (this.y - this.height /8)}
-            // console.log(this.startY);  
+            // console.log(this.y);  
+
+            if (this.y == gameParameters.winningY){
+                reset();
+            }
 
 
             },
