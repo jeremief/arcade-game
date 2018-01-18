@@ -1,8 +1,9 @@
 var gameParameters = {
     winningY: -20,
+    gameWon: false,
     possibleGameDifficulty: [1, 2, 3],
     gameDifficulty: 1,
-    numberEnemies: 4,
+    numberEnemies: 3,
     startPause: 3000
 }
 
@@ -17,6 +18,7 @@ var Enemy = function(name, xCoordinates, yCoordinates, speed) {
     var obj = Object.create(Enemy.prototype);
 
     objProperties = {
+        name: name,
         x: xCoordinates,
         y: yCoordinates,
         width: 45,
@@ -148,10 +150,8 @@ function generateEnemies(){
         enemies.push(enemy);
     }
 
-    // var enemy1 = Enemy('enemy1', enemyPossibleStartX, randomiseEnemyStartY(enemyPossibleStartY), randomiseEnemySpeed(enemyPossibleSpeed));
-    // var enemy2 = Enemy('enemy2', enemyPossibleStartX, randomiseEnemyStartY(enemyPossibleStartY), randomiseEnemySpeed(enemyPossibleSpeed));
-    // var enemy3 = Enemy('enemy3', enemyPossibleStartX, randomiseEnemyStartY(enemyPossibleStartY), randomiseEnemySpeed(enemyPossibleSpeed));
-    // var enemies = [enemy1, enemy2, enemy3];
+    console.log(enemies);
+
     return enemies;
 }
 
