@@ -24,15 +24,15 @@ var Message = function(text){
         fillStyle: "white",
         render:function(){
             // ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+            ctx.font = screenMessage.font; 
+            ctx.textAlign = screenMessage.textAlign;
+            ctx.strokeStyle = screenMessage.strokeStyle;
+            ctx.lineWidth = screenMessage.lineWidth;
             ctx.strokeText(this.messageText, ctx.canvas.width/2, 200);
+            ctx.fillStyle = screenMessage.fillStyle;
             ctx.fillText(this.messageText, ctx.canvas.width/2, 200);
     }
-        // ctx.font = screenMessage.font; 
-        // ctx.textAlign = screenMessage.textAlign;
-        // ctx.strokeStyle = screenMessage.strokeStyle;
-        // ctx.lineWidth = screenMessage.lineWidth;
         // // ctx.strokeText(text, canvas.width/2, 200);
-        // ctx.fillStyle = screenMessage.fillStyle;
         // ctx.fillText(text, canvas.width/2, 200);
 };
         return screenMessage;
