@@ -8,6 +8,36 @@ var gameParameters = {
 }
 
 
+var Message = function(text){
+
+    // var doc = global.document,
+    //     win = global.window,
+    //     canvas = doc.createElement('canvas'),
+    //     ctx = canvas.getContext('2d');
+
+    var screenMessage = {
+        messageText: text,
+        font: '36px impact',
+        textAlign: 'center',
+        strokeStyle: "black",
+        lineWidth: 3,
+        fillStyle: "white",
+        render:function(){
+            // ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+            ctx.strokeText(this.messageText, ctx.canvas.width/2, 200);
+            ctx.fillText(this.messageText, ctx.canvas.width/2, 200);
+    }
+        // ctx.font = screenMessage.font; 
+        // ctx.textAlign = screenMessage.textAlign;
+        // ctx.strokeStyle = screenMessage.strokeStyle;
+        // ctx.lineWidth = screenMessage.lineWidth;
+        // // ctx.strokeText(text, canvas.width/2, 200);
+        // ctx.fillStyle = screenMessage.fillStyle;
+        // ctx.fillText(text, canvas.width/2, 200);
+};
+        return screenMessage;
+};
+
 // Enemies our player must avoid
 var Enemy = function(name, xCoordinates, yCoordinates, speed) {
     // Variables applied to each of our instances go here,
@@ -150,13 +180,13 @@ function generateEnemies(){
         enemies.push(enemy);
     }
 
-    console.log(enemies);
-
     return enemies;
 }
 
 var allEnemies = generateEnemies();
 var player = Player();
+
+var myMessage = Message("Hello");
 
 
 

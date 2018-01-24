@@ -18,6 +18,9 @@ var Engine = (function(global) {
      * create the canvas element, grab the 2D context for that canvas
      * set the canvas elements height/width and add it to the DOM.
      */
+
+     // console.log("Gone into engine")
+
     var doc = global.document,
         win = global.window,
         canvas = doc.createElement('canvas'),
@@ -32,6 +35,9 @@ var Engine = (function(global) {
      * and handles properly calling the update and render methods.
      */
     function main() {
+
+         // console.log("Gone into main")
+
         /* Get our time delta information which is required if your game
          * requires smooth animation. Because everyone's computer processes
          * instructions at different speeds we need a constant value that
@@ -63,6 +69,9 @@ var Engine = (function(global) {
      * game loop.
      */
     function init() {
+
+        // console.log("Gone into init")
+        
         reset();
         lastTime = Date.now();
         main();
@@ -139,6 +148,7 @@ var Engine = (function(global) {
         }
 
         renderEntities();
+        // addText();
     }
 
     /* This function is called by the render function and is called on each game
@@ -149,11 +159,16 @@ var Engine = (function(global) {
         /* Loop through all of the objects within the allEnemies array and call
          * the render function you have defined.
          */
+
+         // console.log("Gone into renderEntities");
+
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
 
         player.render();
+
+        myMessage.render();
     }
 
     /* This function does nothing but it could have been a good place to
@@ -162,8 +177,20 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
-        console.log("reset called");
+        console.log("Gone into reset");
     }
+
+
+    // function addText(){
+    //             var text = "Hello World Boom!"
+    //             ctx.font = '36px impact'; 
+    //             ctx.textAlign = 'center';
+    //             ctx.strokeStyle = "black";
+    //             ctx.lineWidth = 3;
+    //             ctx.strokeText(text, canvas.width/2, 200);
+    //             ctx.fillStyle = "white"
+    //             ctx.fillText(text, canvas.width/2, 200);
+    //         }
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when
