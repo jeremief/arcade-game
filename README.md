@@ -2,7 +2,7 @@
 
 
 SCREENSHOT
-![Screenshot of the game's final result](/imgages/Screenshot.png?raw=true "Final result")
+![Screenshot of the game's final result](/images/Screenshot.png?raw=true "Final result")
 
 
 ## Table of Contents
