@@ -181,7 +181,7 @@ function generateEnemies(){
 var allEnemies = generateEnemies();
 var player = Player();
 
-var mainScreenMessage = Message("Hello", 3000);
+var mainScreenMessage = Message("Get to the top. Be careful.", 3000);
 
 
 
