@@ -120,6 +120,7 @@ var Player = function(){
             // console.log(this.y);  
 
             if (this.y == gameParameters.winningY){
+                myMessage.messageText = "You won!";
                 reset();
             }
 
