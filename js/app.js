@@ -8,13 +8,7 @@ var gameParameters = {
 }
 
 
-var Message = function(text){
-
-    // var doc = global.document,
-    //     win = global.window,
-    //     canvas = doc.createElement('canvas'),
-    //     ctx = canvas.getContext('2d');
-
+var Message = function(text, duration){
     var screenMessage = {
         messageText: text,
         font: '36px impact',
@@ -22,8 +16,9 @@ var Message = function(text){
         strokeStyle: "black",
         lineWidth: 3,
         fillStyle: "white",
+        duration: duration,
+        startTime: Date.now(),
         render:function(){
-            // ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
             ctx.font = screenMessage.font; 
             ctx.textAlign = screenMessage.textAlign;
             ctx.strokeStyle = screenMessage.strokeStyle;
@@ -31,9 +26,15 @@ var Message = function(text){
             ctx.strokeText(this.messageText, ctx.canvas.width/2, 200);
             ctx.fillStyle = screenMessage.fillStyle;
             ctx.fillText(this.messageText, ctx.canvas.width/2, 200);
-    }
-        // // ctx.strokeText(text, canvas.width/2, 200);
-        // ctx.fillText(text, canvas.width/2, 200);
+        },
+        update: function(){
+                if (Date.now() >= (this.startTime + this.duration)) {
+                    this.delete();
+                }
+        },
+        delete: function() {
+            this.messageText = "";
+        }
 };
         return screenMessage;
 };
@@ -117,7 +118,6 @@ var Player = function(){
             this.collisionSensors.c2 = {x: (this.x + this.width /2), y: (this.y + this.height /8)}
             this.collisionSensors.c3 = {x: (this.x + this.width /2), y: (this.y - this.height /8)}
             this.collisionSensors.c4 = {x: (this.x - this.width /2), y: (this.y - this.height /8)}
-            // console.log(this.y);  
 
             if (this.y == gameParameters.winningY){
                 myMessage.messageText = "You won!";
@@ -187,7 +187,7 @@ function generateEnemies(){
 var allEnemies = generateEnemies();
 var player = Player();
 
-var myMessage = Message("Hello");
+var myMessage = Message("Hello", 3000);
 
 
 

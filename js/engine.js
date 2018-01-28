@@ -71,7 +71,7 @@ var Engine = (function(global) {
     function init() {
 
         // console.log("Gone into init")
-        
+
         reset();
         lastTime = Date.now();
         main();
@@ -99,10 +99,12 @@ var Engine = (function(global) {
      * render methods.
      */
     function updateEntities(dt) {
+        // console.log("Gone into updateEntities")
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
         player.update();
+        myMessage.update();
     }
 
     /* This function initially draws the "game level", it will then call
@@ -148,7 +150,6 @@ var Engine = (function(global) {
         }
 
         renderEntities();
-        // addText();
     }
 
     /* This function is called by the render function and is called on each game
