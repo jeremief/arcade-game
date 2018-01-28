@@ -120,7 +120,7 @@ var Player = function(){
             this.collisionSensors.c4 = {x: (this.x - this.width /2), y: (this.y - this.height /8)}
 
             if (this.y == gameParameters.winningY){
-                myMessage.messageText = "You won!";
+                mainScreenMessage = Message("You won!", 1000);
                 reset();
             }
 
@@ -187,7 +187,7 @@ function generateEnemies(){
 var allEnemies = generateEnemies();
 var player = Player();
 
-var myMessage = Message("Hello", 3000);
+var mainScreenMessage = Message("Hello", 3000);
 
 
 
