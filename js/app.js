@@ -1,6 +1,5 @@
 var gameParameters = {
     winningY: -20,
-    gameWon: false,
     possibleGameDifficulty: [1, 2, 3],
     gameDifficulty: 1,
     numberEnemies: 3,
@@ -8,7 +7,7 @@ var gameParameters = {
 }
 
 
-var Message = function(text, duration){
+var Message = function(text, duration, stopsGame=false){
     var screenMessage = {
         messageText: text,
         font: '36px impact',
@@ -30,7 +29,8 @@ var Message = function(text, duration){
         update: function(){
                 if (Date.now() >= (this.startTime + this.duration)) {
                     this.delete();
-                }
+                } 
+            
         },
         delete: function() {
             this.messageText = "";
@@ -120,6 +120,7 @@ var Player = function(){
             this.collisionSensors.c4 = {x: (this.x - this.width /2), y: (this.y - this.height /8)}
 
             if (this.y == gameParameters.winningY){
+                // mainScreenMessage = Message("You won!", 1000, false);
                 mainScreenMessage = Message("You won!", 1000);
                 reset();
             }
@@ -229,6 +230,7 @@ function checkCollisions(){
 }
 
 function reset(){
+    // mainScreenMessage = Message("Hello", 3000);
     allEnemies = generateEnemies();
     player.resetPosition();
 

@@ -178,7 +178,6 @@ var Engine = (function(global) {
      */
     function reset() {
         // noop
-        console.log("Gone into reset");
     }
 
 
