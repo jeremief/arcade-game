@@ -19,8 +19,6 @@ var Engine = (function(global) {
      * set the canvas elements height/width and add it to the DOM.
      */
 
-     // console.log("Gone into engine")
-
     var doc = global.document,
         win = global.window,
         canvas = doc.createElement('canvas'),
@@ -35,8 +33,6 @@ var Engine = (function(global) {
      * and handles properly calling the update and render methods.
      */
     function main() {
-
-         // console.log("Gone into main")
 
         /* Get our time delta information which is required if your game
          * requires smooth animation. Because everyone's computer processes
@@ -69,8 +65,6 @@ var Engine = (function(global) {
      * game loop.
      */
     function init() {
-
-        // console.log("Gone into init")
 
         reset();
         lastTime = Date.now();
@@ -161,7 +155,6 @@ var Engine = (function(global) {
          * the render function you have defined.
          */
 
-         // console.log("Gone into renderEntities");
 
         allEnemies.forEach(function(enemy) {
             enemy.render();
@@ -179,18 +172,6 @@ var Engine = (function(global) {
     function reset() {
         // noop
     }
-
-
-    // function addText(){
-    //             var text = "Hello World Boom!"
-    //             ctx.font = '36px impact'; 
-    //             ctx.textAlign = 'center';
-    //             ctx.strokeStyle = "black";
-    //             ctx.lineWidth = 3;
-    //             ctx.strokeText(text, canvas.width/2, 200);
-    //             ctx.fillStyle = "white"
-    //             ctx.fillText(text, canvas.width/2, 200);
-    //         }
 
     /* Go ahead and load all of the images we know we're going to need to
      * draw our game level. Then set init as the callback method, so that when

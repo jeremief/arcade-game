@@ -1,12 +1,16 @@
+/*
+This object contains global settings for the game.
+Currently holding the winning y coordinates and the number of ennemies
+*/
 var gameParameters = {
     winningY: -20,
-    possibleGameDifficulty: [1, 2, 3],
-    gameDifficulty: 1,
-    numberEnemies: 3,
-    startPause: 3000
+    numberEnemies: 3
 }
 
-
+/*
+The Message class can be used to display text during the game.
+In this version of the game, the main screen message is implemented using it.
+*/
 var Message = function(text, duration, stopsGame=false){
     var screenMessage = {
         messageText: text,
@@ -34,10 +38,11 @@ var Message = function(text, duration, stopsGame=false){
         },
         delete: function() {
             this.messageText = "";
-        }
+            }
+    };
+    return screenMessage;
 };
-        return screenMessage;
-};
+
 
 // Enemies our player must avoid
 var Enemy = function(name, xCoordinates, yCoordinates, speed) {
@@ -66,13 +71,6 @@ var Enemy = function(name, xCoordinates, yCoordinates, speed) {
 };
 
 // Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-// Enemy.prototype.update = function(dt) {
-//     // You should multiply any movement by the dt parameter
-//     // which will ensure the game runs at the same speed for
-//     // all computers.
-// };
-
 // Draw the enemy on the screen, required method for game
 Enemy.prototype = {
     render: function() {
@@ -88,14 +86,13 @@ Enemy.prototype = {
 
 };
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
 
+/*
+The actual player class
+*/
 var Player = function(){
 
     var hero = {
-        livesLeft: 3,
         startX: 202,
         startY: 380,
         x: this.startX,
@@ -120,7 +117,6 @@ var Player = function(){
             this.collisionSensors.c4 = {x: (this.x - this.width /2), y: (this.y - this.height /8)}
 
             if (this.y == gameParameters.winningY){
-                // mainScreenMessage = Message("You won!", 1000, false);
                 mainScreenMessage = Message("You won!", 1000);
                 reset();
             }
@@ -160,9 +156,6 @@ var Player = function(){
 
 
 // Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-
 function generateEnemies(){
     var enemyPossibleStartX = 0;
     var enemyPossibleStartY = [60, 145, 225];
@@ -206,11 +199,11 @@ document.addEventListener('keyup', function(e) {
 });
 
 
-            /*
-             For all enemies, check that the collision box does not intesect with the player's.
-            Collision means that one of the player's corner is in the enemy's collision 
-            box (between x1 and x2 and between y1 and y2)
-            */
+/*
+ For all enemies, check that the collision box does not intesect with the player's.
+Collision means that one of the player's corner is in the enemy's collision 
+box (between x1 and x2 and between y1 and y2)
+*/
 function checkCollisions(){
     for (var enemy of allEnemies){
             if(player.collisionSensors.c1.x >= enemy.x && player.collisionSensors.c1.x <= enemy.x + enemy.width && player.collisionSensors.c1.y >= enemy.y && player.collisionSensors.c1.y <= enemy.y + enemy.height) {
@@ -230,7 +223,6 @@ function checkCollisions(){
 }
 
 function reset(){
-    // mainScreenMessage = Message("Hello", 3000);
     allEnemies = generateEnemies();
     player.resetPosition();
 
